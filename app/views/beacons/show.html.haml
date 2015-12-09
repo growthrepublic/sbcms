@@ -1,0 +1,26 @@
+#beacon
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-body
+          %dl
+            %dt Model
+            %dd= t("beacons.models.#{@beacon.model}")
+            %dt Name
+            %dd= @beacon.name
+            %dt UUID
+            %dd= @beacon.uuid
+
+    .col-md-8
+      .panel.panel-default
+        .panel-heading
+          Preview response
+          %span.text-muted= "(#{beacon_payload_type(@beacon)})"
+        .panel-body
+          %pre= @beacon.to_api
+
+
+.text-right
+  = link_to 'Back', beacons_path, class: 'btn btn-link'
+  = link_to 'Edit', edit_beacon_path(@beacon), class: 'btn btn-primary'
+  = link_to 'Delete', beacon_path(@beacon), class: 'btn btn-danger', :method => :delete, :data => { :confirm => 'Are you sure?' }

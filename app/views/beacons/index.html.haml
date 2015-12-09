@@ -1,0 +1,14 @@
+.list-group.list-group-beacons
+  - @beacons.each do |beacon|
+    %a.list-group-item{href: beacon_url(beacon)}
+      %img{src: beacon_avatar(beacon)}
+
+      %h4.list-group-item-heading
+        = beacon.name
+        %br.visible-xs-block
+        %small= beacon.uuid
+
+      %span.list-group-item-text
+        %span.type= beacon_payload_type(@beacon)
+
+= link_to 'Add new beacon', new_beacon_path, class: 'btn btn-primary'

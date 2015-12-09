@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title SBCMS
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    %nav.navbar.navbar-default
+      .container
+        %a.navbar-brand SBCMS
+
+        %ul.nav.navbar-nav
+          %li= link_to 'Dashboard', root_path
+          %li= link_to 'Beacons', beacons_path
+
+  .container
+    = render_notices
+    = yield

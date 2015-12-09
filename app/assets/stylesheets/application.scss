@@ -1,0 +1,43 @@
+// Twitter Bootstrap with Bootswatch Paper style
+@import "bootstrap-sprockets";
+@import "bootswatch/paper/variables";
+@import "bootstrap";
+@import "bootswatch/paper/bootswatch";
+
+#beacon_payload {
+  .nav-tabs {
+    margin-bottom: $padding-large-vertical
+  }
+}
+
+.list-group-item-menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  > .btn-link {
+    padding-left: $padding-small-horizontal;
+    padding-right: $padding-small-horizontal;
+  }
+}
+
+.list-group-beacons {
+  .list-group-item {
+    padding-left: 80px;
+    padding-right: 50px;
+    min-height: 50px;
+
+    > img {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  }
+}
+
+img.avatar {
+  width: 60px;
+  height: 60px;
+}

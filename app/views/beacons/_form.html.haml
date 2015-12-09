@@ -1,0 +1,98 @@
+= form_for @beacon, as: :beacon, url: @beacon.new_record? ? beacons_path : beacon_path(@beacon), html: { id: 'beacon_form' } do |f|
+  .row
+    .col-md-6
+      .panel
+        .panel-body
+          - if @beacon.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@beacon.errors.count, "error")} prohibited this beacon from being saved:"
+              %ul
+                - @beacon.errors.full_messages.each do |msg|
+                  %li= msg
+
+          .form-group
+            = f.label :model
+            = f.select :model, beacon_model_options, { include_blank: false }, { class: 'form-control' }
+
+          .form-group
+            = f.label :uuid
+            = f.text_field :uuid, class: 'form-control'
+
+          .form-group
+            = f.label :name
+            = f.text_field :name, placeholder: 'Beacon name', class: 'form-control'
+    .col-md-6
+      .panel#beacon_payload
+        .panel-body
+          = hidden_field_tag 'beacon[type]', @beacon.type
+
+          = beacon_nav_tab @beacon, 'Text', BeaconText do
+            .form-group
+              = label_tag :payload, 'Text'
+              = text_area_tag 'beacon[payload]', (@beacon.payload if @beacon.is_a?(BeaconText)), class: 'form-control', rows: 5, placeholder: 'Lorem ipsum dolor sit amet...'
+
+          = beacon_nav_tab @beacon, 'URL', BeaconUrl do
+            .form-group
+              = label_tag :payload, 'URL'
+              = text_field_tag 'beacon[payload]', (@beacon.payload if @beacon.is_a?(BeaconUrl)), class: 'form-control', placeholder: 'http://google.com'
+
+          = beacon_nav_tab @beacon, 'Image', BeaconImage do
+            .form-group
+              = label_tag :payload, 'Image'
+              = file_field_tag 'beacon[payload]', class: 'form-control'
+
+
+          %ul.nav.nav-tabs.nav-justified
+            = content_for :beacon_type_tabs
+
+          .tab-content
+            = content_for :beacon_type_tab_contents
+
+  .row
+    .col-md-12.text-right
+      = link_to 'Cancel', :back, class: 'btn btn-link'
+      = f.submit class: 'btn btn-primary'
+
+
+:coffee
+  $ ->
+    name_field = $('#beacon_name')
+    model_field = $('#beacon_model')
+    uuid_field = $('#beacon_uuid')
+    beacon_payload_type_field = $('#beacon_type')
+
+    $('#beacon_model, #beacon_uuid, #beacon_name').change ->
+      name = name_field.val()
+      if(name == '')
+        model = model_field.val()
+        uuid = uuid_field.val()
+
+        generated_name = model + "-"
+
+        if(uuid.indexOf('-') != -1)
+          generated_name += uuid.split('-').pop()
+        else if(uuid.length >= 4)
+          generated_name += uuid.substr(uuid.length - 4)
+        else
+          generated_name += uuid
+
+        name_field.attr('placeholder', generated_name)
+
+    beacon_payload_tabs = $('#beacon_payload .nav-tabs a')
+
+    beacon_payload_tabs.click (e) ->
+      e.preventDefault()
+      $(this).tab('show')
+      beacon_payload_type_field.val $(this).data('beaconType')
+
+    beacon_payload_tabs.on 'shown.bs.tab', (e) ->
+      current_tab = $($(e.target).attr('href'))
+      previous_tab = $($(e.relatedTarget).attr('href'))
+
+      current_tab.find(':input').prop('disabled', false)
+      previous_tab.find(':input').prop('disabled', true)
+
+    $('.tab-content .tab-pane:not(.active) :input').prop('disabled', true)
+
+    $('#beacon_form').submit (e) ->
+      name_field.val(name_field.attr('placeholder')) if name_field.val() == ''
