@@ -37,7 +37,7 @@ module BeaconsHelper
   end
 
   def beacon_model_options
-    %w(default estimote-beacon).map do |model|
+    %w(default estimote-beacon kontakt-beacon).map do |model|
       [ t("beacons.models.#{model}"), model ]
     end
   end

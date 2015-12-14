@@ -24,3 +24,4 @@ en:
     models:
       default: 'Unknown Device'
       estimote-beacon: 'Estimote iBeacon'
+      kontakt-beacon: 'Kontakt.io iBeacon'
