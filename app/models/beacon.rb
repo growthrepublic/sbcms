@@ -14,6 +14,7 @@
 
 class Beacon < ActiveRecord::Base
   validates :type, inclusion: { in: %w(BeaconImage BeaconText BeaconUrl) }
+  validates :uuid, presence:  true
 
   def beacon_type
     self.class.name.sub(/^Beacon/, '')
