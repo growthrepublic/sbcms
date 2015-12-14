@@ -11,4 +11,8 @@
       %span.list-group-item-text
         %span.type= beacon_payload_type(@beacon)
 
-= link_to 'Add new beacon', new_beacon_path, class: 'btn btn-primary'
+.row
+  .col-md-8
+    = paginate @beacons
+  .col-md-4.text-right
+    = link_to 'Add new beacon', new_beacon_path, class: 'btn btn-primary'

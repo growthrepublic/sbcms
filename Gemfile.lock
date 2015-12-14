@@ -171,6 +171,9 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libv8 (3.16.14.13)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
@@ -245,6 +248,7 @@ DEPENDENCIES
   imgurapi!
   jquery-rails
   jquery-turbolinks
+  kaminari
   listen (~> 3.0.5)
   pry-rails
   puma

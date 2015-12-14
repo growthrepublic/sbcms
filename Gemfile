@@ -18,6 +18,7 @@ gem 'turbolinks'
 
 gem 'bootstrap-sass',   '~> 3.3.6'
 gem 'bootswatch-rails'
+gem 'kaminari'
 
 gem 'puma'
 gem 'httparty'

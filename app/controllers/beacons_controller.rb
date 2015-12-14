@@ -17,7 +17,7 @@ class BeaconsController < ApplicationController
   helper BeaconsHelper
 
   def index
-    @beacons = Beacon.all
+    @beacons = Beacon.page(params[:page])
   end
 
   def show
