@@ -32,7 +32,7 @@ class BeaconsController < ApplicationController
 
   def create
     @beacon = Beacon.new(beacon_params)
-    upload_image(@beacon, beacon_params[:payload]) if @beacon.beacon_type == 'Image'
+    upload_image(@beacon, beacon_params[:payload]) if beacon_params[:type] == 'BeaconImage'
 
     if @beacon.save
       redirect_to beacon_path(@beacon), notice: 'Beacon was successfully created.'
@@ -42,7 +42,7 @@ class BeaconsController < ApplicationController
   end
 
   def update
-    upload_image(@beacon, beacon_params[:payload]) if @beacon.beacon_type == 'Image'
+    params[:beacon][:payload] = upload_image(@beacon, beacon_params[:payload]) if beacon_params[:type] == 'BeaconImage'
 
     if @beacon.update(beacon_params)
       redirect_to beacon_path(@beacon), notice: 'Beacon was successfully updated.'
