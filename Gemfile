@@ -21,7 +21,7 @@ gem 'bootswatch-rails'
 
 gem 'puma'
 gem 'httparty'
-# gem 'imgurapi'
+gem 'imgurapi',         github: 'mklocek/imgur'
 
 gem 'pry-rails'
 gem 'tzinfo-data',      platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,4 +1,4 @@
-= form_for @beacon, as: :beacon, url: @beacon.new_record? ? beacons_path : beacon_path(@beacon), html: { id: 'beacon_form' } do |f|
+= form_for @beacon, as: :beacon, url: @beacon.new_record? ? beacons_path : beacon_path(@beacon), html: { id: 'beacon_form', multipart: true } do |f|
   .row
     .col-md-6
       .panel

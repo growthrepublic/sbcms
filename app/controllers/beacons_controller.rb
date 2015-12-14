@@ -32,6 +32,7 @@ class BeaconsController < ApplicationController
 
   def create
     @beacon = Beacon.new(beacon_params)
+    upload_image(@beacon, beacon_params[:payload]) if @beacon.beacon_type == 'Image'
 
     if @beacon.save
       redirect_to beacon_path(@beacon), notice: 'Beacon was successfully created.'
@@ -41,6 +42,8 @@ class BeaconsController < ApplicationController
   end
 
   def update
+    upload_image(@beacon, beacon_params[:payload]) if @beacon.beacon_type == 'Image'
+
     if @beacon.update(beacon_params)
       redirect_to beacon_path(@beacon), notice: 'Beacon was successfully updated.'
     else
@@ -60,5 +63,12 @@ class BeaconsController < ApplicationController
 
     def beacon_params
       params.require(:beacon).permit(:name, :type, :model, :uuid, :payload)
+    end
+
+    def upload_image(beacon, file)
+      if imgur_session && file
+        image = imgur_session.image.image_upload(file)
+        beacon.payload = image.link
+      end
     end
 end
