@@ -5,7 +5,7 @@
         .panel-body
           - if @beacon.errors.any?
             #error_explanation
-              %h2= "#{pluralize(@beacon.errors.count, "error")} prohibited this beacon from being saved:"
+              %h4= "#{pluralize(@beacon.errors.count, "error")} prohibited this beacon from being saved:"
               %ul
                 - @beacon.errors.full_messages.each do |msg|
                   %li= msg

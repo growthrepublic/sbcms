@@ -1,7 +1,7 @@
 module KontaktApi
   class Cloud
     def self.url
-      'https://api.kontakt.io'
+      'http://api.kontakt.io'
     end
   end
 end
