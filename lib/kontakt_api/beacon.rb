@@ -1,5 +1,3 @@
-require 'openssl'
-
 module KontaktApi
   class Beacon
     include HTTParty
