@@ -1,15 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails',            github: 'rails/rails'
-gem 'sprockets-rails',  github: 'rails/sprockets-rails'
-gem 'sprockets',        github: 'rails/sprockets'
-gem 'sass-rails',       github: 'rails/sass-rails'
-gem 'arel',             github: 'rails/arel'
-gem 'rack',             github: 'rack/rack'
+gem 'rails',            '5.0.0.beta1'
 gem 'haml-rails'
 
 gem 'uglifier',         '>= 1.3.0'
-gem 'coffee-rails',     github: 'rails/coffee-rails'
+gem 'coffee-rails'
 gem 'therubyracer',     platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
@@ -17,7 +12,7 @@ gem 'turbolinks'
 
 gem 'bootstrap-sass',   '~> 3.3.6'
 gem 'bootswatch-rails'
-gem 'kaminari'
+gem 'kaminari',         github: 'amatsuda/kaminari'
 
 gem 'puma'
 gem 'httparty'
