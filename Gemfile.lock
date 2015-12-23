@@ -254,7 +254,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-jdbcsqlite3-adapter
   annotate!
   bootstrap-sass (~> 3.3.6)
   bootswatch-rails
@@ -263,7 +262,6 @@ DEPENDENCIES
   haml-rails
   httparty
   imgurapi!
-  jdbc-sqlite3
   jquery-rails
   jquery-turbolinks
   kaminari!
