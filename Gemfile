@@ -14,7 +14,6 @@ gem 'bootstrap-sass',   '~> 3.3.6'
 gem 'bootswatch-rails'
 gem 'kaminari',         github: 'amatsuda/kaminari'
 
-gem 'puma'
 gem 'httparty'
 gem 'imgurapi',         github: 'mklocek/imgur'
 
@@ -64,3 +63,7 @@ if File.exist?(database_file)
 else
   warn('Please configure your config/database.yml first')
 end
+
+gem 'puma'
+gem 'mina'
+gem 'mina-puma',        require: false, github: 'growthrepublic/mina-puma'
