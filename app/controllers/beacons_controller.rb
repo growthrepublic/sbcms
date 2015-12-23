@@ -64,6 +64,7 @@ class BeaconsController < ApplicationController
     end
 
     def beacon_params
+      params.require(:beacon).permit(:name, :type, :model, :uuid, :payload, :major, :minor)
     end
 
     def upload_image(beacon, file)

@@ -15,12 +15,20 @@
             = f.select :model, beacon_model_options, { include_blank: false }, { class: 'form-control' }
 
           .form-group
+            = f.label :name
+            = f.text_field :name, placeholder: 'Beacon name', class: 'form-control'
+
+          .form-group
             = f.label :uuid
             = f.text_field :uuid, class: 'form-control'
 
           .form-group
-            = f.label :name
-            = f.text_field :name, placeholder: 'Beacon name', class: 'form-control'
+            = f.label :major
+            = f.text_field :major, class: 'form-control'
+
+          .form-group
+            = f.label :minor
+            = f.text_field :minor, class: 'form-control'
     .col-md-6
       .panel#beacon_payload
         .panel-body

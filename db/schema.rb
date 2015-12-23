@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20151207121620) do
     t.string   "type",       default: "BeaconText", null: false
     t.string   "model",      default: "",           null: false
     t.string   "uuid",       default: "",           null: false
+    t.integer  "major",      default: 1,            null: false
+    t.integer  "minor",      default: 1,            null: false
     t.text     "payload"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
