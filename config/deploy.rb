@@ -13,7 +13,12 @@ set :user, 'app'
 set :repository, 'git@bitbucket.org:growthrepublic/sbcms.git'
 set :term_mode, :system
 set :keep_releases, 2
-set :shared_paths, ['log', 'config/database.yml', 'config/secrets.yml']
+set :shared_paths, %w(
+  log
+  config/database.yml
+  config/secrets.yml
+  db/production.sqlite3
+)
 
 task :environment do
   invoke :'rbenv:load'
