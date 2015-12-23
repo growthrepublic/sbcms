@@ -21,6 +21,6 @@ module Sbcms
     # config.i18n.default_locale = :de
 
     # Autoload lib files
-    config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end
