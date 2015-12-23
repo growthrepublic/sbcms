@@ -16,10 +16,8 @@
 
 module BeaconsHelper
   def beacon_avatar(beacon)
-    asset_filename = "beacons/#{beacon.model}.png"
-
-    if Rails.application.assets.find_asset(asset_filename).present?
-      asset_url asset_filename
+    if %w(estimote-beacon kontakt-beacon).include? beacon.model
+      asset_url "beacons/#{beacon.model}.png"
     else
       asset_url 'beacons/default.png'
     end
