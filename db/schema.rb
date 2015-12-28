@@ -11,18 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207121620) do
+ActiveRecord::Schema.define(version: 20151228075348) do
 
   create_table "beacons", force: :cascade do |t|
-    t.string   "name",       default: "",           null: false
-    t.string   "type",       default: "BeaconText", null: false
-    t.string   "model",      default: "",           null: false
-    t.string   "uuid",       default: "",           null: false
-    t.integer  "major",      default: 1,            null: false
-    t.integer  "minor",      default: 1,            null: false
+    t.string   "name",       default: "", null: false
+    t.string   "model",      default: "", null: false
+    t.string   "uuid",       default: "", null: false
+    t.integer  "major",      default: 1,  null: false
+    t.integer  "minor",      default: 1,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "type",       default: "EventText", null: false
+    t.integer  "kind",       default: 0,           null: false
+    t.integer  "state",      default: 0,           null: false
+    t.integer  "beacon_id"
     t.text     "payload"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["beacon_id"], name: "index_events_on_beacon_id"
   end
 
 end

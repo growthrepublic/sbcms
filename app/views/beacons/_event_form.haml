@@ -1,0 +1,30 @@
+- events.each_with_index do |event, index|
+  %hr
+  .row
+    .col-md-4
+      %h6
+        = event.kind
+        = select_tag 'beacon[events_attributes][][state]', options_for_select(Event.states.keys, selected: event.state)
+    .col-md-8
+      = hidden_field_tag 'beacon[events_attributes][][type]', event.type, data: { field: 'type' }
+      = hidden_field_tag 'beacon[events_attributes][][kind]', event.kind
+      = hidden_field_tag 'beacon[events_attributes][][id]',   event.id
+
+      %ul.nav.nav-tabs.nav-justified
+        - [EventImage, EventText, EventUrl].each do |klass|
+          %li{class: ('active' if event.is_a?(klass))}
+            %a{href: "#event_type_#{klass.name.underscore}_#{event.kind}", data: { beacon_type: klass.name }}= klass.to_s.split('Event')[1]
+
+      .tab-content.event-tab-content
+        .tab-pane{id: "event_type_event_text_#{event.kind}", class: ('active' if event.is_a?(EventText))}
+          .form-group
+            = label_tag :payload, 'Text'
+            = text_area_tag 'beacon[events_attributes][][payload]', event.payload, class: 'form-control', rows: 5, placeholder: 'Lorem ipsum dolor sit amet...'
+        .tab-pane{id: "event_type_event_url_#{event.kind}", class: ('active' if event.is_a?(EventUrl))}
+          .form-group
+            = label_tag :payload, 'URL'
+            = text_field_tag 'beacon[events_attributes][][payload]', event.payload, class: 'form-control', placeholder: 'http://google.com'
+        .tab-pane{id: "event_type_event_image_#{event.kind}", class: ('active' if event.is_a?(EventImage))}
+          .form-group
+            = label_tag :payload, 'Image'
+            = file_field_tag 'beacon[events_attributes][][payload]', class: 'form-control'

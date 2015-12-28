@@ -18,10 +18,11 @@
     .col-md-8
       .panel.panel-default
         .panel-heading
-          Preview response
-          %span.text-muted= "(#{beacon_payload_type(@beacon)})"
+          Preview event response
         .panel-body
-          %pre= @beacon.to_api
+          - @beacon.events.active.each do |event|
+            %h4= event.kind
+            %pre= event.to_api
 
 
 .text-right

@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id         :integer          not null, primary key
+#  type       :string           default("EventText"), not null
+#  kind       :integer          default("enter"), not null
+#  state      :integer          default("inactive"), not null
+#  payload    :text
+#  beacon_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  kind: 1
+  payload: MyText
+
+two:
+  type: 
+  kind: 1
+  payload: MyText

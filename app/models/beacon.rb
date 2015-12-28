@@ -4,25 +4,23 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string           default(""), not null
-#  type       :string           default("BeaconText"), not null
 #  model      :string           default(""), not null
 #  uuid       :string           default(""), not null
 #  major      :integer          default(1), not null
 #  minor      :integer          default(1), not null
-#  payload    :text
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 class Beacon < ActiveRecord::Base
-  validates :type, inclusion: { in: %w(BeaconImage BeaconText BeaconUrl) }
-  validates :uuid, :major, :minor, presence:  true
+  has_many :events, dependent: :destroy
+  accepts_nested_attributes_for :events
 
-  def beacon_type
-    self.class.name.sub(/^Beacon/, '')
-  end
+  validates :uuid, :major, :minor, presence: true
+
+  after_initialize -> { EventsManager.initialize_beacon_events(self) }
 
   def to_api
-    { type: beacon_type, payload: payload.to_s }
+    { name: name, model: model, major: major, minor: minor }
   end
 end

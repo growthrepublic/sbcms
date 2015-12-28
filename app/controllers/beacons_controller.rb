@@ -4,12 +4,10 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string           default(""), not null
-#  type       :string           default("BeaconText"), not null
 #  model      :string           default(""), not null
 #  uuid       :string           default(""), not null
 #  major      :integer          default(1), not null
 #  minor      :integer          default(1), not null
-#  payload    :text
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -34,7 +32,7 @@ class BeaconsController < ApplicationController
 
   def create
     @beacon = Beacon.new(beacon_params)
-    upload_image(@beacon, beacon_params[:payload]) if beacon_params[:type] == 'BeaconImage'
+    process_images(@beacon) if @beacon.valid?
 
     if @beacon.save
       redirect_to beacon_path(@beacon), notice: 'Beacon was successfully created.'
@@ -44,9 +42,10 @@ class BeaconsController < ApplicationController
   end
 
   def update
-    params[:beacon][:payload] = upload_image(@beacon, beacon_params[:payload]) if beacon_params[:type] == 'BeaconImage'
+    @beacon.update_attributes(beacon_params)
+    process_images(@beacon) if @beacon.valid?
 
-    if @beacon.update(beacon_params)
+    if @beacon.save
       redirect_to beacon_path(@beacon), notice: 'Beacon was successfully updated.'
     else
       render :edit
@@ -64,13 +63,26 @@ class BeaconsController < ApplicationController
     end
 
     def beacon_params
-      params.require(:beacon).permit(:name, :type, :model, :uuid, :payload, :major, :minor)
+      params.require(:beacon).permit(
+          :name,
+          :model,
+          :uuid,
+          :major,
+          :minor,
+          events_attributes: [:id, :type, :kind, :payload, :state]
+      )
     end
 
-    def upload_image(beacon, file)
+    def process_images(beacon)
+      params[:beacon][:events_attributes].each_with_index do |event, index|
+        beacon.events[index][:payload] = upload_image(event[:payload]) if event[:type] == 'EventImage'
+      end
+    end
+
+    def upload_image(file)
       if imgur_session && file
         image = imgur_session.image.image_upload(file)
-        beacon.payload = image.link
+        image.link
       end
     end
 end

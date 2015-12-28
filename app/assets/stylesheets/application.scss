@@ -6,7 +6,7 @@
 
 #beacon_payload {
   .nav-tabs {
-    margin-bottom: $padding-large-vertical
+    margin-bottom: $padding-large-vertical;
   }
 }
 
@@ -44,4 +44,8 @@ img.avatar {
 
 .pagination {
   margin: 0;
+}
+
+.event-tab-content {
+  min-height: 173px;
 }
