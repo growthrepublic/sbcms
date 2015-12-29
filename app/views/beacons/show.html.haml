@@ -22,7 +22,14 @@
         .panel-body
           - @beacon.events.active.each do |event|
             %h4= event.kind
-            %pre= event.to_api
+            %p API request:
+            %code
+              = api_beacon_event_url(uuid: @beacon.uuid, kind: event.kind)
+            %br
+            %br
+            %p API response:
+            %pre
+              = event.to_api
 
 
 .text-right

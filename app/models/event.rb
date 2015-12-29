@@ -15,6 +15,8 @@
 class Event < ActiveRecord::Base
   belongs_to :beacon, optional: true
 
+  EVENT_TYPES = %w(EventImage EventText EventUrl)
+
   enum kind: {
       enter:      0,
       exit:       1,
@@ -23,26 +25,25 @@ class Event < ActiveRecord::Base
       immediate:  4
   }
 
-  enum state: {
-      inactive:   0,
-      active:     1
-  }
+  validates :type, inclusion: { in: EVENT_TYPES }
 
-  validates :type, inclusion: { in: %w(EventImage EventText EventUrl) }
+  scope :active, -> { where(active: true) }
 
   def event_type
     self.class.name.sub(/^Event/, '')
   end
 
   def to_api
-    if active?
-      {
-        beacon: beacon.to_api,
-        payload: payload,
-        type: event_type
-      }
-    else
-      {}
-    end
+    return {} unless active?
+    {
+      beacon:   beacon.to_api,
+      payload:  payload,
+      type:     event_type,
+      kind:     kind
+    }
+  end
+
+  def self.types
+    EVENT_TYPES
   end
 end

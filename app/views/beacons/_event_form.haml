@@ -1,29 +1,31 @@
-- events.each_with_index do |event, index|
+- events.each do |event|
   %hr
   .row
     .col-md-4
       %h6
-        = event.kind
-        = select_tag 'beacon[events_attributes][][state]', options_for_select(Event.states.keys, selected: event.state)
+        Event:
+        %b= event.kind
+      = check_box_tag '', event.active, event.active, 'data-size' => 'mini', 'data-on-text' => 'active', 'data-off-text' => 'inactive'
+      = hidden_field_tag  'beacon[events_attributes][][active]',  event.active
     .col-md-8
-      = hidden_field_tag 'beacon[events_attributes][][type]', event.type, data: { field: 'type' }
-      = hidden_field_tag 'beacon[events_attributes][][kind]', event.kind
-      = hidden_field_tag 'beacon[events_attributes][][id]',   event.id
+      = hidden_field_tag 'beacon[events_attributes][][type]',   event.type, data: { field: 'type' }
+      = hidden_field_tag 'beacon[events_attributes][][kind]',   event.kind
+      = hidden_field_tag 'beacon[events_attributes][][id]',     event.id
 
       %ul.nav.nav-tabs.nav-justified
-        - [EventImage, EventText, EventUrl].each do |klass|
-          %li{class: ('active' if event.is_a?(klass))}
-            %a{href: "#event_type_#{klass.name.underscore}_#{event.kind}", data: { beacon_type: klass.name }}= klass.to_s.split('Event')[1]
+        - Event.types.each do |class_name|
+          %li{class: ('active' if event.is_a?(class_name.constantize))}
+            %a{href: "#event_type_#{class_name.underscore}_#{event.kind}", data: { beacon_type: class_name }}= class_name.sub(/^Event/, '')
 
       .tab-content.event-tab-content
         .tab-pane{id: "event_type_event_text_#{event.kind}", class: ('active' if event.is_a?(EventText))}
           .form-group
             = label_tag :payload, 'Text'
-            = text_area_tag 'beacon[events_attributes][][payload]', event.payload, class: 'form-control', rows: 5, placeholder: 'Lorem ipsum dolor sit amet...'
+            = text_area_tag 'beacon[events_attributes][][payload]', (event.payload if event.is_a?(EventText)), class: 'form-control', rows: 5, placeholder: 'Lorem ipsum dolor sit amet...'
         .tab-pane{id: "event_type_event_url_#{event.kind}", class: ('active' if event.is_a?(EventUrl))}
           .form-group
             = label_tag :payload, 'URL'
-            = text_field_tag 'beacon[events_attributes][][payload]', event.payload, class: 'form-control', placeholder: 'http://google.com'
+            = text_field_tag 'beacon[events_attributes][][payload]', (event.payload if event.is_a?(EventUrl)), class: 'form-control', placeholder: 'http://google.com'
         .tab-pane{id: "event_type_event_image_#{event.kind}", class: ('active' if event.is_a?(EventImage))}
           .form-group
             = label_tag :payload, 'Image'

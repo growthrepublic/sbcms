@@ -9,7 +9,9 @@
         %small= beacon.uuid
 
       %span.list-group-item-text
-        %span.type= beacon_payload_type(beacon)
+        %span.type
+          = pluralize(beacon.events.active.count, 'event')
+          active
 
 .row
   .col-md-8

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151228075348) do
   create_table "events", force: :cascade do |t|
     t.string   "type",       default: "EventText", null: false
     t.integer  "kind",       default: 0,           null: false
-    t.integer  "state",      default: 0,           null: false
+    t.boolean  "active",     default: false,       null: false
     t.integer  "beacon_id"
     t.text     "payload"
     t.datetime "created_at"

@@ -69,13 +69,15 @@ class BeaconsController < ApplicationController
           :uuid,
           :major,
           :minor,
-          events_attributes: [:id, :type, :kind, :payload, :state]
+          events_attributes: [:id, :type, :kind, :payload, :active]
       )
     end
 
     def process_images(beacon)
       params[:beacon][:events_attributes].each_with_index do |event, index|
-        beacon.events[index][:payload] = upload_image(event[:payload]) if event[:type] == 'EventImage'
+        if event[:payload].present? && event[:type] == 'EventImage'
+          beacon.events[index][:payload] = upload_image(event[:payload])
+        end
       end
     end
 

@@ -3,6 +3,7 @@
 @import "bootswatch/paper/variables";
 @import "bootstrap";
 @import "bootswatch/paper/bootswatch";
+@import "bootstrap-switch.min";
 
 #beacon_payload {
   .nav-tabs {
@@ -48,4 +49,29 @@ img.avatar {
 
 .event-tab-content {
   min-height: 173px;
+}
+
+.bootstrap-switch {
+  border-radius: 0;
+  &.bootstrap-switch-focused {
+    border-color: #ccc;
+    box-shadow: none;
+  }
+  &:focus {
+    outline: 0;
+  }
+
+  .bootstrap-switch-handle-on,
+  .bootstrap-switch-label,
+  .bootstrap-switch-handle-off {
+    border-radius: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    background: $btn-primary-bg;
+  }
 }

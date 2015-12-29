@@ -36,7 +36,7 @@
     .panel-heading
       %h1.panel-title Events
     .panel-body.beacon-events
-      = render 'event_form', beacon: @beacon, events: @beacon.events
+      = render 'event_form', events: @beacon.events
 
   .row
     .col-md-12.text-right
@@ -46,6 +46,9 @@
 
 :coffee
   $ ->
+    $("input[type=checkbox]").bootstrapSwitch()
+    $("input[type=checkbox]").on 'switchChange.bootstrapSwitch', (e, state) ->
+      $(e.target).parents('.bootstrap-switch').siblings('[name="beacon[events_attributes][][active]"]').val state
     name_field = $('#beacon_name')
     model_field = $('#beacon_model')
     uuid_field = $('#beacon_uuid')
