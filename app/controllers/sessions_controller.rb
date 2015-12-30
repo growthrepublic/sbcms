@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate!
+  skip_before_action :authenticate_user
 
   def new
   end
 
   def create
-    session[:password] = params[:password]
-    authenticate!
+    if Settings.authenticate(params[:password])
+      session[:password] = params[:password]
+      redirect_to root_path and return
+    end
 
-    redirect_to edit_settings_path
+    render :new
   end
 end

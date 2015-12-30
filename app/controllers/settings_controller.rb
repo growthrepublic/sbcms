@@ -12,15 +12,13 @@
 #
 
 class SettingsController < ApplicationController
-  skip_before_action :configure_application, only: [:new, :create]
+  skip_before_action :authenticate_user, only: [:new, :create]
 
   def new
   end
 
   def create
-    settings_params.each do |field, value|
-      Settings.send("#{field}=", value)
-    end
+    Settings.update_with_password(settings_params)
 
     redirect_to root_path
   end
@@ -29,9 +27,7 @@ class SettingsController < ApplicationController
   end
 
   def update
-    settings_params.each do |field, value|
-      Settings.send("#{field}=", value)
-    end
+    Settings.update_with_password(settings_params)
 
     redirect_to root_path
   end

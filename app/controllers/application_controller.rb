@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :configure_application
-  before_action :authenticate!, if: -> { Settings.installed? }
+  before_action :authenticate_user
 
   def imgur_uploader
     @imgur_uploader ||= ImgurApi::Uploader.new(
@@ -15,19 +14,15 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def configure_application
-    redirect_to new_setting_path unless Settings.installed?
-  end
-
-  def authenticate!
-    redirect_to new_session_path unless settings
-  end
-
-  def settings
-    @settings ||= Settings.authenticate(password)
-  end
-
-  def password
-    @password ||= session[:password]
+  def authenticate_user
+    if Settings.configuration_finished
+      unless Settings.authenticate(session[:password])
+        session[:password] = nil
+        redirect_to new_session_path
+        false
+      end
+    else
+      redirect_to new_setting_path
+    end
   end
 end

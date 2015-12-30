@@ -1,5 +1,5 @@
 %form.form-horizontal{ action: action, method: :post }
-  = hidden_field_tag :authenticity_token, form_authenticity_token
+  = token_tag
   .col-xs-12
     .form-group
       %label{ for: 'password' } Password
@@ -7,6 +7,6 @@
     - Settings.application_keys.each do |field|
       .form-group
         %label{ for: field }= field.humanize
-        %input.form-control{ id: field, type: 'text', name: field, value: Settings.send(field) }
+        %input.form-control{ id: field, type: 'text', name: field, value: Settings[field] }
     .form-group.text-right
       %button.btn.btn-primary{ type: 'submit' } Save
