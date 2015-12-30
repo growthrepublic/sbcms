@@ -13,7 +13,7 @@ class BeaconsSynchronizer
   end
 
   def sync_estimote
-    beacons = EstimoteApi::Beacon.all
+    beacons = EstimoteApi::Beacon.all(Settings.estimote_app_id, Settings.estimote_app_token)
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
@@ -27,7 +27,7 @@ class BeaconsSynchronizer
   end
 
   def sync_kontakt
-    beacons = KontaktApi::Beacon.all
+    beacons = KontaktApi::Beacon.all(Settings.kontakt_api_key)
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|

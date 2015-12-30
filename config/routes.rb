@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     end
   end
   resources :beacons
-  resources :events, only: :update
+  resources :events,    only: :update
+  resources :settings,  only: [:new, :create] do
+    collection do
+      get   'edit' => 'settings#edit'
+      post  'edit' => 'settings#update'
+    end
+  end
+  resources :sessions,  only: [:new, :create]
   root to: 'dashboard#index'
 end

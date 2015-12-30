@@ -16,6 +16,16 @@ GIT
       rake (~> 10.4)
 
 GIT
+  remote: git://github.com/gregmolnar/activerecord-session_store.git
+  revision: 7c02a5c484b31c36c06619ba7dd3cbfb0558b6bb
+  branch: rails5
+  specs:
+    activerecord-session_store (0.1.2)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
+
+GIT
   remote: git://github.com/growthrepublic/mina-puma.git
   revision: 2d86ef45b0004931f3998296f90ae99f9e2968c8
   specs:
@@ -80,6 +90,7 @@ GEM
     autoprefixer-rails (6.2.1)
       execjs
       json
+    bcrypt (3.1.10)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -205,6 +216,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-settings-cached (0.5.2)
+      rails (>= 4.2.0)
     railties (5.0.0.beta1)
       actionpack (= 5.0.0.beta1)
       activesupport (= 5.0.0.beta1)
@@ -254,7 +267,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-session_store!
   annotate!
+  bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)
   bootswatch-rails
   byebug
@@ -271,6 +286,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 5.0.0.beta1)
+  rails-settings-cached
   spring
   sqlite3
   therubyracer

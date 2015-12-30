@@ -1,0 +1,14 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-heading
+        %h1.panel-title Authentication
+      .panel-body
+        %form.form-horizontal{ action: sessions_path, method: :post }
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .col-xs-12
+            .form-group
+              %label{ for: 'password' } Password
+              %input.form-control#password{ type: 'password', name: 'password' }
+            .form-group.text-right
+              %button.btn.btn-primary{ type: 'submit' } Authenticate

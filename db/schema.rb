@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228075348) do
+ActiveRecord::Schema.define(version: 20151229125030) do
 
   create_table "beacons", force: :cascade do |t|
     t.string   "name",       default: "", null: false
@@ -32,6 +32,25 @@ ActiveRecord::Schema.define(version: 20151228075348) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["beacon_id"], name: "index_events_on_beacon_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
 end

@@ -76,15 +76,8 @@ class BeaconsController < ApplicationController
     def process_images(beacon)
       params[:beacon][:events_attributes].each_with_index do |event, index|
         if event[:payload].present? && event[:type] == 'EventImage'
-          beacon.events[index][:payload] = upload_image(event[:payload])
+          beacon.events[index][:payload] = imgur_uploader.upload(event[:payload])
         end
-      end
-    end
-
-    def upload_image(file)
-      if imgur_session && file
-        image = imgur_session.image.image_upload(file)
-        image.link
       end
     end
 end
