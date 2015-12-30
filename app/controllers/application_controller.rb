@@ -4,11 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_application
-  before_action :sync_beacons
-
-  def sync_beacons
-    Rails.cache.fetch 'beacons_synced', expires_in: 5.minutes do BeaconsSynchronizer.new.sync end
-  end
 
   def imgur_uploader
     @imgur_uploader ||= ImgurApi::Uploader.new(

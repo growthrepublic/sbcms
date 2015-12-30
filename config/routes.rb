@@ -5,7 +5,11 @@ Rails.application.routes.draw do
       get ':uuid/events/:kind' => 'events#show', as: :beacon_event
     end
   end
-  resources :beacons
+  resources :beacons do
+    collection do
+      post 'fetch' => 'beacons#fetch'
+    end
+  end
   resources :events,    only: :update
   resources :settings,  only: [:new, :create] do
     collection do

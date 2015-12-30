@@ -1,18 +1,13 @@
 class BeaconsSynchronizer
-  def initialize
-    @providers = Rails.application.secrets.beacon_providers.keys || []
-  end
 
-  def sync
-    @providers.each do |provider|
-      method = "sync_#{ provider }"
-      send(method) if respond_to?(method)
-    end
+  def self.sync
+    self.sync_estimote
+    self.sync_kontakt
 
     true
   end
 
-  def sync_estimote
+  def self.sync_estimote
     beacons = EstimoteApi::Beacon.all(Settings.estimote_app_id, Settings.estimote_app_token)
 
     if beacons.is_a? Array
@@ -26,7 +21,7 @@ class BeaconsSynchronizer
     end
   end
 
-  def sync_kontakt
+  def self.sync_kontakt
     beacons = KontaktApi::Beacon.all(Settings.kontakt_api_key)
 
     if beacons.is_a? Array

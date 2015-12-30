@@ -1,3 +1,9 @@
+.text-right
+  = link_to 'Add new beacon', new_beacon_path, class: 'btn btn-primary'
+  = link_to 'Fetch new beacons', fetch_beacons_path, method: :post, class: 'btn btn-success'
+  %br
+  %br
+
 .list-group.list-group-beacons
   - @beacons.each do |beacon|
     %a.list-group-item{href: beacon_url(beacon)}
@@ -13,8 +19,4 @@
           = pluralize(beacon.events.active.count, 'event')
           active
 
-.row
-  .col-md-8
-    = paginate @beacons
-  .col-md-4.text-right
-    = link_to 'Add new beacon', new_beacon_path, class: 'btn btn-primary'
+= paginate @beacons

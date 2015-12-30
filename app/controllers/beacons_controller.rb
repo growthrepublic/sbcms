@@ -57,6 +57,12 @@ class BeaconsController < ApplicationController
     redirect_to beacons_url, notice: 'Beacon was successfully destroyed.'
   end
 
+  def fetch
+    BeaconsSynchronizer.sync
+
+    redirect_to beacons_path
+  end
+
   private
     def set_beacon
       @beacon = Beacon.find(params[:id])
