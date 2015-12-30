@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229125030) do
+ActiveRecord::Schema.define(version: 20151230124832) do
 
   create_table "beacons", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.string   "model",      default: "", null: false
-    t.string   "uuid",       default: "", null: false
-    t.integer  "major",      default: 1,  null: false
-    t.integer  "minor",      default: 1,  null: false
+    t.string   "name",         default: "", null: false
+    t.string   "model",        default: "", null: false
+    t.string   "uuid",         default: "", null: false
+    t.integer  "major",        default: 1,  null: false
+    t.integer  "minor",        default: 1,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uniqueSyncId", default: ""
   end
 
   create_table "events", force: :cascade do |t|

@@ -12,10 +12,11 @@ class BeaconsSynchronizer
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
-        Beacon.find_or_initialize_by(uuid: beacon_data['uuid']).tap do |b|
-          b.model           = 'estimote-beacon'
-          b.name            = "#{ b.model }-#{ beacon_data['uuid'].split('-').last }" unless b.name.present?
-          b.major, b.minor  = beacon_data['major'], beacon_data['minor']
+        Beacon.find_or_initialize_by(model: 'estimote-beacon', uniqueSyncId: beacon_data['mac']).tap do |b|
+          b.name  = "#{ b.model }-#{ beacon_data['uuid'].split('-').last }" unless b.name.present?
+          b.uuid  = beacon_data['uuid']
+          b.major = beacon_data['major']
+          b.minor = beacon_data['minor']
         end.save
       end
     end
@@ -26,10 +27,11 @@ class BeaconsSynchronizer
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
-        Beacon.find_or_initialize_by(uuid: beacon_data['id']).tap do |b|
-          b.model           = 'kontakt-beacon'
-          b.name            = "#{ model }-#{ beacon_data['id'].split('-').last }" unless b.name.present?
-          b.major, b.minor  = beacon_data['major'], beacon_data['minor']
+        Beacon.find_or_initialize_by(model: 'kontakt-beacon', uniqueSyncId: beacon_data['id']).tap do |b|
+          b.name  = "#{ b.model }-#{ beacon_data['uuid'].split('-').last }" unless b.name.present?
+          b.uuid  = beacon_data['id']
+          b.major = beacon_data['major']
+          b.minor = beacon_data['minor']
         end.save
       end
     end

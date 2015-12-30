@@ -1,36 +1,37 @@
 = form_for @beacon, as: :beacon, url: @beacon.new_record? ? beacons_path : beacon_path(@beacon), html: { id: 'beacon_form', multipart: true } do |f|
-  .row
-    .col-md-6
-      .panel
-        .panel-heading
-          %h1.panel-title Beacon
-        .panel-body
-          - if @beacon.errors.any?
-            #error_explanation
-              %h4= "#{pluralize(@beacon.errors.count, "error")} prohibited this beacon from being saved:"
-              %ul
-                - @beacon.errors.full_messages.each do |msg|
-                  %li= msg
-
+  .panel
+    .panel-heading
+      %h1.panel-title Beacon
+    .panel-body
+      - if @beacon.errors.any?
+        #error_explanation
+          %h4= "#{pluralize(@beacon.errors.count, "error")} prohibited this beacon from being saved:"
+          %ul
+            - @beacon.errors.full_messages.each do |msg|
+              %li= msg
+      .row
+        .col-md-6
           .form-group
             = f.label :model
             = f.select :model, beacon_model_options, { include_blank: false }, { class: 'form-control' }
-
           .form-group
             = f.label :name
             = f.text_field :name, placeholder: 'Beacon name', class: 'form-control'
-
           .form-group
             = f.label :uuid
             = f.text_field :uuid, class: 'form-control'
-
+        .col-md-6
           .form-group
             = f.label :major
             = f.text_field :major, class: 'form-control'
-
           .form-group
             = f.label :minor
             = f.text_field :minor, class: 'form-control'
+          .form-group
+            = f.label :uniqueSyncId, 'Unique sync id'
+            = f.text_field :uniqueSyncId, class: 'form-control'
+            %p.help-block
+              MAC address for Estimote iBeacons, id for Kontakt.io iBeacons. Leave blank if none of them.
 
   .panel
     .panel-heading

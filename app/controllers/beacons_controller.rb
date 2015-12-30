@@ -75,6 +75,7 @@ class BeaconsController < ApplicationController
           :uuid,
           :major,
           :minor,
+          :uniqueSyncId,
           events_attributes: [:id, :type, :kind, :payload, :active]
       )
     end
