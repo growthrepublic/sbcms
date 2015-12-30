@@ -12,8 +12,7 @@
 #
 
 class SettingsController < ApplicationController
-  skip_before_action  :configure_application, only: [:new, :create]
-  before_action       :authenticate!, except: [:new, :create]
+  skip_before_action :configure_application, only: [:new, :create]
 
   def new
   end

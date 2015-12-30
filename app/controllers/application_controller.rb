@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_application
+  before_action :authenticate!, if: -> { Settings.installed? }
 
   def imgur_uploader
     @imgur_uploader ||= ImgurApi::Uploader.new(
