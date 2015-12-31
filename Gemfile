@@ -6,6 +6,7 @@ gem 'haml-rails'
 gem 'rails-settings-cached'
 gem 'bcrypt',           '~> 3.1.7'
 gem 'active_model_serializers', '0.10.0.rc3'
+gem 'puma'
 
 # contains rails5 fixes not yet merged to rails repository!
 gem 'activerecord-session_store', github: 'gregmolnar/activerecord-session_store', branch: 'rails5'
@@ -47,7 +48,3 @@ group :test do
   gem 'minitest-rails', github: 'blowmage/minitest-rails', branch: 'rails5'
   gem 'simplecov',      require: false
 end
-
-gem 'puma'
-gem 'mina'
-gem 'mina-puma',        require: false, github: 'growthrepublic/mina-puma'

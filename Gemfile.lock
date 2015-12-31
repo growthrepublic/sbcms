@@ -35,13 +35,6 @@ GIT
       railties (>= 4.0.0, < 5)
 
 GIT
-  remote: git://github.com/growthrepublic/mina-puma.git
-  revision: 2d86ef45b0004931f3998296f90ae99f9e2968c8
-  specs:
-    mina-puma (0.2.0)
-      mina
-
-GIT
   remote: git://github.com/mklocek/imgur.git
   revision: 1ee6a786390dfe12f7195ddf64af488d9f361d4c
   specs:
@@ -189,16 +182,12 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99)
-    mina (0.3.7)
-      open4 (~> 1.3.4)
-      rake
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
-    open4 (1.3.4)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -303,8 +292,6 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari!
   listen (~> 3.0.5)
-  mina
-  mina-puma!
   minitest-rails!
   pg
   pry-rails
