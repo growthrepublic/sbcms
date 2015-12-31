@@ -9,7 +9,10 @@ class BeaconsSynchronizer
   end
 
   def self.sync_estimote
-    beacons = EstimoteApi::Beacon.all(Settings.estimote_app_id, Settings.estimote_app_token)
+    beacons = EstimoteApi::Cloud.new(
+      app_id:     Settings.estimote_app_id,
+      app_token:  Settings.estimote_app_token
+    ).beacons
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
@@ -24,7 +27,9 @@ class BeaconsSynchronizer
   end
 
   def self.sync_kontakt
-    beacons = KontaktApi::Beacon.all(Settings.kontakt_api_key)
+    beacons = KontaktApi::Cloud.new(
+      api_key: Settings.kontakt_api_key
+    ).beacons
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
