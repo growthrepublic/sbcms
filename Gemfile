@@ -34,10 +34,10 @@ end
 
 group :development, :test do
   gem 'byebug'
+  gem 'sqlite3'
 end
 
 group :development do
-  gem 'sqlite3'
   gem 'spring'
   gem 'listen',         '~> 3.0.5'
   gem 'annotate',       github: 'ctran/annotate_models', branch: 'develop'
