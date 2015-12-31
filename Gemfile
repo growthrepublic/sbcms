@@ -1,8 +1,18 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 gem 'rails',            '5.0.0.beta1'
 gem 'haml-rails'
-gem 'sqlite3'
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_stdout_logging'
+end
+
 gem 'rails-settings-cached'
 gem 'bcrypt',           '~> 3.1.7'
 gem 'active_model_serializers', '0.10.0.rc3'

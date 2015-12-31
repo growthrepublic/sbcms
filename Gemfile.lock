@@ -189,6 +189,7 @@ GEM
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     open4 (1.3.4)
+    pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -222,6 +223,7 @@ GEM
       loofah (~> 2.0)
     rails-settings-cached (0.5.2)
       rails (>= 4.2.0)
+    rails_stdout_logging (0.0.4)
     railties (5.0.0.beta1)
       actionpack (= 5.0.0.beta1)
       activesupport (= 5.0.0.beta1)
@@ -288,10 +290,12 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mina
   mina-puma!
+  pg
   pry-rails
   puma
   rails (= 5.0.0.beta1)
   rails-settings-cached
+  rails_stdout_logging
   spring
   sqlite3
   therubyracer
