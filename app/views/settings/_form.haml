@@ -14,9 +14,12 @@
 
 :coffee
   $ ->
-    $('input[type=checkbox]').bootstrapSwitch().each (i, e) ->
+    $checkboxes = $('input[type=checkbox]')
+
+    $checkboxes.bootstrapSwitch()
+    $checkboxes.each (i, e) ->
       $(e).data('bootstrapSwitch').state($(e).val() == 'true')
-    $('input[type=checkbox]').on 'switchChange.bootstrapSwitch', (e, state) ->
+    $checkboxes.on 'switchChange.bootstrapSwitch', (e, state) ->
       destination = $(e.target).data('destination')
       $('input[name=' + destination + ']').val(state)
       $('#' + destination).slideToggle()
