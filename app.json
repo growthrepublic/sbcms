@@ -1,0 +1,20 @@
+{
+  "name": "Simple Beacon CMS",
+  "description": "A simple CMS to manage API for beacons and their events",
+  "repository": "http://bitbucket.com/growthrepublic/sbcms",
+  "success_url": "/",
+  "keywords": ["beacons", "cms", "api"],
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "env": {
+    "RAILS_ENV": "production",
+    "SECRET_KEY_BASE": {
+      "description": "Rails secret_key_base",
+      "generator": "secret"
+    }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
