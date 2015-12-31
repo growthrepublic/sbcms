@@ -29,7 +29,7 @@
             %br
             %p API response:
             %pre
-              = event.to_api
+              = ActiveModel::SerializableResource.new(event, EventSerializer.includes).serializable_hash
 
 
 .text-right

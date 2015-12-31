@@ -1,7 +1,15 @@
 module Api
   class BeaconsController < Api::ApplicationController
+    def index
+      beacons = Beacon.all
+
+      render json: serialized(beacons)
+    end
+
     def show
-      render json: Beacon.find_by!(uuid: params[:uuid]).to_api
+      beacon = Beacon.find_by!(uuid: params[:uuid])
+
+      render json: serialized(beacon)
     end
   end
 end

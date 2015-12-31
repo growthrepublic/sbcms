@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     scope :beacons do
-      get ':uuid' => 'beacons#show'
-      get ':uuid/events/:kind' => 'events#show', as: :beacon_event
+      get ''                    => 'beacons#index'
+      get ':uuid'               => 'beacons#show'
+      get ':uuid/events'        => 'events#index'
+      get ':uuid/events/:kind'  => 'events#show',   as: :beacon_event
     end
   end
   resources :beacons do

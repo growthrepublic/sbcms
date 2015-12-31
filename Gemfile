@@ -5,6 +5,7 @@ gem 'haml-rails'
 gem 'sqlite3'
 gem 'rails-settings-cached'
 gem 'bcrypt',           '~> 3.1.7'
+gem 'active_model_serializers', '0.10.0.rc3'
 
 # contains rails5 fixes not yet merged to rails repository!
 gem 'activerecord-session_store', github: 'gregmolnar/activerecord-session_store', branch: 'rails5'
