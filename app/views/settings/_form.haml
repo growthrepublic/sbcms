@@ -4,9 +4,19 @@
     .form-group
       %label{ for: 'password' } Password
       %input.form-control#password{ type: 'password', name: 'password' }
-    - Settings.application_keys.each do |field|
-      .form-group
-        %label{ for: field }= field.humanize
-        %input.form-control{ id: field, type: 'text', name: field, value: Settings[field] }
+
+    = render 'estimote_fields'
+    = render 'kontakt_fields'
+    = render 'imgur_fields'
+
     .form-group.text-right
       %button.btn.btn-primary{ type: 'submit' } Save
+
+:coffee
+  $ ->
+    $('input[type=checkbox]').bootstrapSwitch().each (i, e) ->
+      $(e).data('bootstrapSwitch').state($(e).val() == 'true')
+    $('input[type=checkbox]').on 'switchChange.bootstrapSwitch', (e, state) ->
+      destination = $(e.target).data('destination')
+      $('input[name=' + destination + ']').val(state)
+      $('#' + destination).slideToggle()

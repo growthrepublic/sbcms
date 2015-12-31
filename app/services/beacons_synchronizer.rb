@@ -1,8 +1,9 @@
 class BeaconsSynchronizer
 
   def self.sync
-    self.sync_estimote
-    self.sync_kontakt
+    %i(estimote kontakt).each do |service|
+      self.send("sync_#{service}") if Settings.service_enabled?(service)
+    end
 
     true
   end

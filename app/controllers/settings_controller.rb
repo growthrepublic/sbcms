@@ -36,12 +36,15 @@ class SettingsController < ApplicationController
     def settings_params
       params.permit(
           :password,
+          :imgur_integration,
           :imgur_client_id,
           :imgur_client_secret,
           :imgur_access_token,
           :imgur_refresh_token,
+          :estimote_integration,
           :estimote_app_id,
           :estimote_app_token,
+          :kontakt_integration,
           :kontakt_api_key
       )
     end

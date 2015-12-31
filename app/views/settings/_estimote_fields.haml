@@ -1,0 +1,16 @@
+- enabled = Settings.service_enabled?(:estimote)
+
+.form-group
+  %label{ for: 'estimote_integration' } Estimote Cloud
+  .pull-right
+    %input{ type: 'checkbox', name: '', value: enabled.to_s, 'data-size' => 'mini', 'data-destination' => 'estimote_integration' }
+    %input{ type: 'hidden', name: 'estimote_integration', value: enabled.to_s }
+
+#estimote_integration{ class: ('unpresent' unless enabled) }
+  .form-group
+    %label{ for: 'estimote_app_id' } App ID
+    %input.form-control#estimote_app_id{ type: 'text', name: 'estimote_app_id', value: Settings['estimote_app_id'] }
+
+  .form-group
+    %label{ for: 'estimote_app_token' } App Token
+    %input.form-control#estimote_app_token{ type: 'text', name: 'estimote_app_token', value: Settings['estimote_app_token'] }

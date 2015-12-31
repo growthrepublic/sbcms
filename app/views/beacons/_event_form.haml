@@ -13,7 +13,7 @@
       = hidden_field_tag 'beacon[events_attributes][][id]',     event.id
 
       %ul.nav.nav-tabs.nav-justified
-        - Event.types.each do |class_name|
+        - Event.available_types.each do |class_name|
           %li{class: ('active' if event.is_a?(class_name.constantize))}
             %a{href: "#event_type_#{class_name.underscore}_#{event.kind}", data: { beacon_type: class_name }}= class_name.sub(/^Event/, '')
 
@@ -26,7 +26,8 @@
           .form-group
             = label_tag :payload, 'URL'
             = text_field_tag 'beacon[events_attributes][][payload]', (event.payload if event.is_a?(EventUrl)), class: 'form-control', placeholder: 'http://google.com'
-        .tab-pane{id: "event_type_event_image_#{event.kind}", class: ('active' if event.is_a?(EventImage))}
-          .form-group
-            = label_tag :payload, 'Image'
-            = file_field_tag 'beacon[events_attributes][][payload]', class: 'form-control'
+        - if Settings.service_enabled?(:imgur)
+          .tab-pane{id: "event_type_event_image_#{event.kind}", class: ('active' if event.is_a?(EventImage))}
+            .form-group
+              = label_tag :payload, 'Image'
+              = file_field_tag 'beacon[events_attributes][][payload]', class: 'form-control'

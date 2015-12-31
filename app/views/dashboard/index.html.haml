@@ -1,1 +1,24 @@
-.container
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title Database
+      .panel-body
+        %dl.dl-horizontal
+          %dt All iBeacons:
+          %dd= Beacon.count
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title Services Integrations
+      .panel-body
+        %dl.dl-horizontal
+          %dt Estimote Cloud Account:
+          %dd
+            %i.glyphicon{ class: "glyphicon-#{Settings.service_enabled?(:estimote) ? 'ok' : 'remove'}" }
+          %dt Kontakt.io Account:
+          %dd
+            %i.glyphicon{ class: "glyphicon-#{Settings.service_enabled?(:kontakt) ? 'ok' : 'remove'}" }
+          %dt imgur Account:
+          %dd
+            %i.glyphicon{ class: "glyphicon-#{Settings.service_enabled?(:imgur) ? 'ok' : 'remove'}" }

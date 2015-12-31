@@ -33,7 +33,17 @@ class Event < ActiveRecord::Base
     self.class.name.sub(/^Event/, '')
   end
 
-  def self.types
-    EVENT_TYPES
+  class << self
+    def available_types
+      unless Settings.service_enabled?(:imgur)
+        return EVENT_TYPES[1..2]
+      end
+
+      EVENT_TYPES
+    end
+
+    def types
+      EVENT_TYPES
+    end
   end
 end

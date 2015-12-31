@@ -14,18 +14,6 @@
 class Settings < RailsSettings::CachedSettings
 
   class << self
-    def application_keys
-      %w(
-        imgur_client_id
-        imgur_client_secret
-        imgur_access_token
-        imgur_refresh_token
-        estimote_app_id
-        estimote_app_token
-        kontakt_api_key
-      )
-    end
-
     def authenticate(unencrypted_password)
       return unless self.password_digest
 
@@ -47,6 +35,10 @@ class Settings < RailsSettings::CachedSettings
       params.each do |key, value|
         Settings[key] = value
       end
+    end
+
+    def service_enabled?(service)
+      self["#{service}_integration"] == 'true'
     end
   end
 end

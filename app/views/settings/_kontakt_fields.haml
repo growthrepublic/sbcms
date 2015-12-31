@@ -1,0 +1,12 @@
+- enabled = Settings.service_enabled?(:kontakt)
+
+.form-group
+  %label{ for: 'kontakt_integration' } Kontakt.io
+  .pull-right
+    %input{ type: 'checkbox', name: '', value: enabled.to_s, 'data-size' => 'mini', 'data-destination' => 'kontakt_integration' }
+    %input{ type: 'hidden', name: 'kontakt_integration', value: enabled.to_s }
+
+#kontakt_integration{ class: ('unpresent' unless enabled) }
+  .form-group
+    %label{ for: 'kontakt_api_key' } API Key
+    %input.form-control#kontakt_api_key{ type: 'text', name: 'kontakt_api_key', value: Settings['kontakt_api_key'] }
