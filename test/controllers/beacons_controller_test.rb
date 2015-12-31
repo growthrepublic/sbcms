@@ -16,7 +16,10 @@ require 'test_helper'
 
 class BeaconsControllerTest < ActionController::TestCase
   setup do
-    @beacon = beacons(:one)
+    @beacon = beacons(:estimote)
+    @params = { beacon: serialize(@beacon).merge({ events_attributes: serialize(@beacon.events) }) }
+
+    sign_in
   end
 
   test "should get index" do
@@ -31,7 +34,7 @@ class BeaconsControllerTest < ActionController::TestCase
 
   test "should create beacon" do
     assert_difference('Beacon.count') do
-      post :create, params: { beacon: { model: @beacon.model, name: @beacon.name, payload: @beacon.payload, uuid: @beacon.uuid } }
+      post :create, params: @params
     end
 
     assert_redirected_to beacon_path(Beacon.last)
@@ -48,15 +51,7 @@ class BeaconsControllerTest < ActionController::TestCase
   end
 
   test "should update beacon" do
-    patch :update, params: { id: @beacon, beacon: { model: @beacon.model, name: @beacon.name, payload: @beacon.payload, uuid: @beacon.uuid } }
+    patch :update, { id: @beacon }.merge(@params)
     assert_redirected_to beacon_path(@beacon)
-  end
-
-  test "should destroy beacon" do
-    assert_difference('Beacon.count', -1) do
-      delete :destroy, params: { id: @beacon }
-    end
-
-    assert_redirected_to beacons_path
   end
 end

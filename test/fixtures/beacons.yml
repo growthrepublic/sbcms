@@ -14,12 +14,10 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: 
-  uuid: MyString
-  type: 
-
-two:
-  user: 
-  uuid: MyString
-  type: 
+estimote:
+  uuid: B9407F30-F5F8-466E-AFF9-25556B57FE6D
+  model: estimote-beacon
+  major: 1
+  minor: 1
+  name: estimote-beacon-25556B57FE6D
+  uniqueSyncId: abcdefabcdef

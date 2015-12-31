@@ -1,7 +1,8 @@
 class EventSerializer < ActiveModel::Serializer
   attributes  :type,
               :kind,
-              :payload
+              :payload,
+              :active
 
   belongs_to  :beacon
 

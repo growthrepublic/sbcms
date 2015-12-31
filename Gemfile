@@ -47,6 +47,11 @@ group :development do
   gem 'annotate',       github: 'ctran/annotate_models', branch: 'develop'
 end
 
+group :test do
+  gem 'minitest-rails', github: 'blowmage/minitest-rails', branch: 'rails5'
+  gem 'simplecov',      require: false
+end
+
 gem 'puma'
 gem 'mina'
 gem 'mina-puma',        require: false, github: 'growthrepublic/mina-puma'

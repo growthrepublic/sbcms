@@ -14,12 +14,9 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  type: 
-  kind: 1
-  payload: MyText
-
-two:
-  type: 
-  kind: 1
-  payload: MyText
+enter:
+  type: EventText
+  kind: enter
+  payload: EventText enter payload
+  active: true
+  beacon: estimote

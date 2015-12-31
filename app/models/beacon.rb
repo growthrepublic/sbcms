@@ -20,7 +20,4 @@ class Beacon < ActiveRecord::Base
 
   after_initialize -> { EventsManager.initialize_beacon_events(self) }
 
-  def to_api
-    { name: name, model: model, major: major, minor: minor }
-  end
 end

@@ -7,6 +7,15 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
+  remote: git://github.com/blowmage/minitest-rails.git
+  revision: acea177b38d78d723a1ff236b8b013410c3ca3be
+  branch: rails5
+  specs:
+    minitest-rails (3.0.0.20141204144115)
+      minitest (~> 5.4)
+      railties (~> 5.0.0.alpha)
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: 056fd4218cd07a89aa0a6af1ab60cfe66683f322
   branch: develop
@@ -128,6 +137,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
+    docile (1.1.5)
     em-hiredis (0.3.0)
       eventmachine (~> 1.0)
       hiredis (~> 0.5.0)
@@ -240,6 +250,11 @@ GEM
       sexp_processor (~> 4.1)
     sass (3.4.20)
     sexp_processor (4.6.0)
+    simplecov (0.11.1)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     spring (1.6.0)
     sprockets (3.5.2)
@@ -290,12 +305,14 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mina
   mina-puma!
+  minitest-rails!
   pg
   pry-rails
   puma
   rails (= 5.0.0.beta1)
   rails-settings-cached
   rails_stdout_logging
+  simplecov
   spring
   sqlite3
   therubyracer

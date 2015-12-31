@@ -15,7 +15,9 @@
 require 'test_helper'
 
 class BeaconTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  let(:beacon)       { beacons(:estimote) }
+
+  def test_valid
+    assert beacon.valid?
+  end
 end

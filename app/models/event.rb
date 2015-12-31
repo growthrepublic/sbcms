@@ -33,16 +33,6 @@ class Event < ActiveRecord::Base
     self.class.name.sub(/^Event/, '')
   end
 
-  def to_api
-    return {} unless active?
-    {
-      beacon:   beacon.to_api,
-      payload:  payload,
-      type:     event_type,
-      kind:     kind
-    }
-  end
-
   def self.types
     EVENT_TYPES
   end

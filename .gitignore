@@ -18,3 +18,4 @@
 !/tmp/.keep
 /.idea
 /.DS_Store
+/coverage/

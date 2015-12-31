@@ -3,5 +3,6 @@ class BeaconSerializer < ActiveModel::Serializer
               :model,
               :major,
               :minor,
-              :uuid
+              :uuid,
+              :uniqueSyncId
 end
