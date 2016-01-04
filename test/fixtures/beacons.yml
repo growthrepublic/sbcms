@@ -2,14 +2,16 @@
 #
 # Table name: beacons
 #
-#  id         :integer          not null, primary key
-#  name       :string           default(""), not null
-#  model      :string           default(""), not null
-#  uuid       :string           default(""), not null
-#  major      :integer          default(1), not null
-#  minor      :integer          default(1), not null
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer          not null, primary key
+#  name              :string           default(""), not null
+#  model             :string           default(""), not null
+#  uuid              :string           default(""), not null
+#  major             :integer          default(1), not null
+#  minor             :integer          default(1), not null
+#  created_at        :datetime
+#  updated_at        :datetime
+#  unique_sync_id    :string           default("")
+#  unique_identifier :string           not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -20,4 +22,5 @@ estimote:
   major: 1
   minor: 1
   name: estimote-beacon-25556B57FE6D
-  uniqueSyncId: abcdefabcdef
+  unique_sync_id: abcdefabcdef
+  unique_identifier: B9407F30-F5F8-466E-AFF9-25556B57FE6D-1-1

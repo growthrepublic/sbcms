@@ -7,7 +7,7 @@ module Api
     end
 
     def show
-      beacon = Beacon.find_by!(uuid: params[:uuid])
+      beacon = Beacon.find_by!(unique_identifier: params[:unique_identifier])
 
       render json: serialized(beacon)
     end

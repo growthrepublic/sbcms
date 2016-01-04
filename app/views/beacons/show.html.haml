@@ -24,7 +24,7 @@
             %h4= event.kind
             %p API request:
             %code
-              = api_beacon_event_url(uuid: @beacon.uuid, kind: event.kind)
+              = api_beacon_event_url(unique_identifier: @beacon.unique_identifier, kind: event.kind)
             %br
             %br
             %p API response:

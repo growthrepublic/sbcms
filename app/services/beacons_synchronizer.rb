@@ -16,7 +16,7 @@ class BeaconsSynchronizer
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
-        Beacon.find_or_initialize_by(model: 'estimote-beacon', uniqueSyncId: beacon_data['mac']).tap do |b|
+        Beacon.find_or_initialize_by(model: 'estimote-beacon', unique_sync_id: beacon_data['mac']).tap do |b|
           b.name  = "#{ b.model }-#{ beacon_data['uuid'].split('-').last }" unless b.name.present?
           b.uuid  = beacon_data['uuid']
           b.major = beacon_data['major']
@@ -33,7 +33,7 @@ class BeaconsSynchronizer
 
     if beacons.is_a? Array
       beacons.each do |beacon_data|
-        Beacon.find_or_initialize_by(model: 'kontakt-beacon', uniqueSyncId: beacon_data['id']).tap do |b|
+        Beacon.find_or_initialize_by(model: 'kontakt-beacon', unique_sync_id: beacon_data['uniqueId']).tap do |b|
           b.name  = "#{ b.model }-#{ beacon_data['uuid'].split('-').last }" unless b.name.present?
           b.uuid  = beacon_data['id']
           b.major = beacon_data['major']

@@ -2,14 +2,16 @@
 #
 # Table name: beacons
 #
-#  id         :integer          not null, primary key
-#  name       :string           default(""), not null
-#  model      :string           default(""), not null
-#  uuid       :string           default(""), not null
-#  major      :integer          default(1), not null
-#  minor      :integer          default(1), not null
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer          not null, primary key
+#  name              :string           default(""), not null
+#  model             :string           default(""), not null
+#  uuid              :string           default(""), not null
+#  major             :integer          default(1), not null
+#  minor             :integer          default(1), not null
+#  created_at        :datetime
+#  updated_at        :datetime
+#  unique_sync_id    :string           default("")
+#  unique_identifier :string           not null
 #
 
 require 'test_helper'
@@ -33,8 +35,11 @@ class BeaconsControllerTest < ActionController::TestCase
   end
 
   test "should create beacon" do
+    params = @params
+    params[:beacon][:major] = params[:beacon][:major].to_i + 1
+
     assert_difference('Beacon.count') do
-      post :create, params: @params
+      post :create, params: params
     end
 
     assert_redirected_to beacon_path(Beacon.last)
