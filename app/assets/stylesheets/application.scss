@@ -80,6 +80,13 @@ img.avatar {
   display: none;
 }
 
-.dl-horizontal dt{
+.dl-horizontal dt {
   text-align: left;
+}
+
+.form-horizontal {
+  .form-group.form-group-padded {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

@@ -1,27 +1,27 @@
 module ImgurApi
   class Uploader
-    def initialize(opts = {})
-      @client_id      = opts[:client_id]
-      @client_secret  = opts[:client_secret]
-      @access_token   = opts[:access_token]
-      @refresh_token  = opts[:refresh_token]
-      create_session
+    BASE_URI = URI('https://api.imgur.com/3/image')
 
-      self
+    def initialize(client_id)
+      @client_id = client_id
     end
 
-    def create_session
-      @session ||= Imgurapi::Session.new(
-          client_id:      @client_id,
-          client_secret:  @client_secret,
-          access_token:   @access_token,
-          refresh_token:  @refresh_token
-      )
-    end
-
+    # upload image file using body_stream
     def upload(file)
-      image = @session.image.image_upload(file) rescue nil
-      image.try(:link)
+      http = Net::HTTP.new(BASE_URI.host, BASE_URI.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+
+      request = Net::HTTP::Post.new(BASE_URI.path)
+      request['Authorization'] = "Client-ID #{@client_id}"
+      request['Content-Length'] = file.size
+      request['Transfer-Encoding'] = 'chunked'
+      request.body_stream = file
+
+      response = http.request(request)
+      parsed_body = JSON.parse(response.body)
+
+      parsed_body['data']['link']
     end
   end
 end

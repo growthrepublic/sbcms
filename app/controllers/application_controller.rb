@@ -6,12 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user
 
   def imgur_uploader
-    @imgur_uploader ||= ImgurApi::Uploader.new(
-        client_id:      Settings.imgur_client_id,
-        client_secret:  Settings.imgur_client_secret,
-        access_token:   Settings.imgur_access_token,
-        refresh_token:  Settings.imgur_refresh_token
-    )
+    @imgur_uploader ||= ImgurApi::Uploader.new(Settings.imgur_client_id)
   end
 
   def authenticate_user

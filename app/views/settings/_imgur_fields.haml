@@ -7,18 +7,7 @@
     %input{ type: 'hidden', name: 'imgur_integration', value: enabled.to_s }
 
 #imgur_integration{ class: ('unpresent' unless enabled) }
-  .form-group
+
+  .form-group.form-group-padded
     %label{ for: 'imgur_client_id' } Client ID
     %input.form-control#imgur_client_id{ type: 'text', name: 'imgur_client_id', value: Settings['imgur_client_id'] }
-
-  .form-group
-    %label{ for: 'imgur_client_secret' } Client Secret
-    %input.form-control#imgur_client_secret{ type: 'text', name: 'imgur_client_secret', value: Settings['imgur_client_secret'] }
-
-  .form-group
-    %label{ for: 'imgur_access_token' } Access Token
-    %input.form-control#imgur_access_token{ type: 'text', name: 'imgur_access_token', value: Settings['imgur_access_token'] }
-
-  .form-group
-    %label{ for: 'imgur_refresh_token' } Refresh Token
-    %input.form-control#imgur_refresh_token{ type: 'text', name: 'imgur_refresh_token', value: Settings['imgur_refresh_token'] }

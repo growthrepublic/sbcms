@@ -7,10 +7,10 @@
     %input{ type: 'hidden', name: 'estimote_integration', value: enabled.to_s }
 
 #estimote_integration{ class: ('unpresent' unless enabled) }
-  .form-group
+  .form-group.form-group-padded
     %label{ for: 'estimote_app_id' } App ID
     %input.form-control#estimote_app_id{ type: 'text', name: 'estimote_app_id', value: Settings['estimote_app_id'] }
 
-  .form-group
+  .form-group.form-group-padded
     %label{ for: 'estimote_app_token' } App Token
     %input.form-control#estimote_app_token{ type: 'text', name: 'estimote_app_token', value: Settings['estimote_app_token'] }

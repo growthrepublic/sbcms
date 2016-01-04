@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   scope :active, -> { where(active: true) }
 
   def event_type
-    self.class.name.sub(/^Event/, '')
+    self.class.name.sub(/^Event/, '').downcase
   end
 
   class << self

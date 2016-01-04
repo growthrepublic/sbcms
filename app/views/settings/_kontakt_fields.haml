@@ -7,6 +7,6 @@
     %input{ type: 'hidden', name: 'kontakt_integration', value: enabled.to_s }
 
 #kontakt_integration{ class: ('unpresent' unless enabled) }
-  .form-group
+  .form-group.form-group-padded
     %label{ for: 'kontakt_api_key' } API Key
     %input.form-control#kontakt_api_key{ type: 'text', name: 'kontakt_api_key', value: Settings['kontakt_api_key'] }
