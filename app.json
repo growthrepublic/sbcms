@@ -1,7 +1,7 @@
 {
   "name": "Simple Beacon CMS",
   "description": "A simple CMS to manage API for beacons and their events",
-  "repository": "http://bitbucket.com/growthrepublic/sbcms",
+  "repository": "https://github.com/growthrepublic/sbcms",
   "success_url": "/",
   "keywords": ["beacons", "cms", "api"],
   "addons": [
