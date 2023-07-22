@@ -5,7 +5,7 @@
   "success_url": "/",
   "keywords": ["beacons", "cms", "api"],
   "addons": [
-    "heroku-postgresql:hobby-dev"
+    "heroku-postgresql:mini"
   ],
   "env": {
     "RAILS_ENV": "production",
